@@ -12,10 +12,10 @@
   <body>
   
   <% if current_user %>
-  <%= link_to 'Logout', '', :data => { :confirm => 'Are you sure?' }%>
+  <%= link_to 'Logout', '/logout', :data => { :confirm => 'Are you sure?' }%>
  <% else %>
-  <%= link_to 'Signup', ''%>
-  <%= link_to 'Login', ''%>
+  <%= link_to 'Signup', '/admin/users/new'%>
+  <%= link_to 'Login', '/admin/sessions/new'%>
 <% end %>
     <%= yield %>
   </body>

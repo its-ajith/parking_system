@@ -1,0 +1,12 @@
+<h1>Admin::ParkSystems</h1>
+
+</p><br><br>
+<h1 class="text-center"></h1>
+<% unless current_user.park_system %>
+<%= link_to 'Create Your own parking system', new_admin_park_system_path %>
+<% end %>
+
+
+<%= link_to 'Book slot'  %>
+<%= link_to 'remove slot'  %>
+<%= link_to 'available slot'  %>

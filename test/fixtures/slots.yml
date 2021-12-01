@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  slot_number: 1
+  status: MyString
+  park_system: one
+
+two:
+  slot_number: 1
+  status: MyString
+  park_system: two

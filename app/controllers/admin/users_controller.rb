@@ -1,4 +1,4 @@
-class Admin::UsersController < AdminController
+class Admin::UsersController < ApplicationController
 
   def index
   end
@@ -10,16 +10,17 @@ class Admin::UsersController < AdminController
   def create
     user = User.new(user_params)
     if user.save
+      redirect_to '/login'
       flash[:notice]="Signup successful"
     else
       flash[:notice]="Please try again"
-       redirect_to 'new_admin_user_path'
+       render :new
     end
   end
 
   private
     def user_params
-      params.require(:user).permit(:email, :password, :password_confirmation)
+      params.require(:user).permit(:email, :password, :confirmation_password)
     end
 
 end

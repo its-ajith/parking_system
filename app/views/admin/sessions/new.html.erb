@@ -1,14 +1,14 @@
-<%= form_tag '' do %>
+<%= form_tag '/admin/sessions' do %>
     <div class="field">
     <%= label_tag 'Email'%>
-    <%= text_field_tag :email, params[:name] %>
+    <%= text_field_tag :email, params[:email] %>
     </div>
 
     <br>
 
     <div class="field">
     <%= label_tag 'Password'%>
-    <%= password_field_tag :password %></p> 
+    <%= password_field_tag :password, params[:password] %></p> 
     </div>
     
     <%= submit_tag "Log In" %>

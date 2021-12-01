@@ -10,20 +10,38 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_11_29_130411) do
+ActiveRecord::Schema.define(version: 2021_11_30_105143) do
 
-  create_table "parkingsystems", force: :cascade do |t|
+  create_table "cars", force: :cascade do |t|
+    t.string "register_number"
+    t.string "color"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "park_systems", force: :cascade do |t|
     t.string "name", null: false
-    t.integer "total_number_of_slots", null: false
+    t.integer "slot_count", null: false
     t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_parkingsystems_on_user_id"
+    t.index ["user_id"], name: "index_park_systems_on_user_id"
+  end
+
+  create_table "slots", force: :cascade do |t|
+    t.string "status", null: false
+    t.integer "park_system_id"
+    t.integer "car_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["car_id"], name: "index_slots_on_car_id"
+    t.index ["park_system_id"], name: "index_slots_on_park_system_id"
   end
 
   create_table "users", force: :cascade do |t|
-    t.string "email", default: "", null: false
-    t.string "password", default: "", null: false
+    t.string "email", null: false
+    t.string "password", null: false
+    t.string "confirmation_password", default: "", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
