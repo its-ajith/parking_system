@@ -13,10 +13,9 @@ class Admin::ParkSystemsController < AdminController
     end
     
     def show 
-      
       @parksystem = current_user.park_system
       @slots = current_user.park_system.slots.all
-
+      
       if (params[:color])
         @slots= current_user.park_system.find_by_color(params[:color])
       end
