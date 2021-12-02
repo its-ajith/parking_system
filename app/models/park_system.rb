@@ -19,19 +19,16 @@ class ParkSystem < ApplicationRecord
     self.slots.where(status: "allocated")
   end
 
-  def book_slot
-    
-    self.slots.where(id: "2")
-    s
+  def remove_slot(id)
+    Slot.where("id = ?", id).first.unallocate
   end
 
 
   def find_by_color(color)
-    self.slots.joins(:car).select('slots.id', 'slots.status').where('color = color')
+    self.slots.joins(:car).select('slots.id', 'slots.status').where("color = ?",color)
   end
 
   def find_by_register_number(register_number)
-    byebug
-    self.slots.joins(:car).select('slots.id').where('register_number = register_number')
+    self.slots.joins(:car).select('slots.id', 'slots.status').where("register_number = ?", register_number)
   end
 end

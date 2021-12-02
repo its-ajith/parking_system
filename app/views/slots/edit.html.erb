@@ -1,0 +1,13 @@
+<h1> Book slot</h1>
+<%= form_tag slot_path(@slot) do %>
+    <div class="field">
+    <%= label_tag 'Enter register number' %>
+    <%= text_field_tag :register_number, params[:register_number] %>
+    </div> <br>
+    <%= label_tag 'Enter the color of your car' %>
+    <%= text_field_tag :color, params[:color] %>
+    </div>
+    
+    <%= submit_tag "book slot" %>
+        
+<% end %>
