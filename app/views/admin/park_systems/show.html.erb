@@ -1,12 +1,51 @@
-<h1>Admin::ParkSystems</h1>
+<head>
+<br>
 
-</p><br><br>
-<h1 class="text-center"></h1>
-<% unless current_user.park_system %>
-<%= link_to 'Create Your own parking system', new_admin_park_system_path %>
-<% end %>
+  <%= form_tag(admin_park_system_path, method: :get, ) do  %>
+    <%= label_tag  "Search by color:" %>
+    <%= collection_select(:color, :car_id, Car.all, :id, :color, prompt: true, selected: params[:color]) %>
+    <%= submit_tag "Search" %>
+  <% end %>
+  
+  <%= form_tag(admin_park_system_path) do  %>
+    <%= label_tag  "Search by register number:" %>
+    <%= text_field_tag :register_number %>
+    <%= submit_tag "Search" %>
+  <% end %>
 
 
-<%= link_to 'Book slot'  %>
-<%= link_to 'remove slot'  %>
-<%= link_to 'available slot'  %>
+<%= link_to 'Book slot', admin_park_system_path %>
+<%= link_to 'remove slot', admin_park_system_path(status: "") %>
+<%= link_to 'free slots available',admin_park_system_path(status: "unallocated") %>
+<%= link_to 'booked slots',admin_park_system_path(status: "allocated") %>
+<%= link_to 'All slots',admin_park_system_path(status: "") %>
+
+
+</head>
+
+<table>
+  <thead>
+    <tr>
+      <th>Slot_number</th>
+      <th>Status</th>
+      
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @slots.each do |slot| %>
+      <tr>
+        <td><%=  slot.id %></td> 
+        <td><%=  link_to slot.status, admin_park_system_path %>
+        <% if slot.status == "allocated" %>
+        <%=link_to 'free slot', admin_park_system_path(slot:"free")%>
+        <% else%>
+        <%=link_to 'book slot', admin_park_system_path(slot:"book")%>
+        <%end%>
+        </td>
+       
+      </tr>
+    <% end %>
+  </tbody>
+</table>

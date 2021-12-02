@@ -1,0 +1,13 @@
+
+<h1> Parking system</h1>
+</p><br><br>
+<h1 class="text-center"></h1>
+<% if current_user.park_system   %>
+<h1>Welcome <%=@parksystem.name%></h1><br>
+<%= link_to 'view and manage your parking system', admin_park_system_path(@parksystem)   %>
+<%else%>
+<%= link_to 'Create Your own parking system', new_admin_park_system_path %>
+<% end %>
+
+
+

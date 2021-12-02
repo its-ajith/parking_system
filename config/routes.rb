@@ -17,7 +17,7 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :users
     resources :sessions
-    resource :park_system
+    resources :park_systems
 
   end
 

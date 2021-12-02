@@ -17,5 +17,7 @@ class Slot < ApplicationRecord
   end
   
   
-
+  def available
+    Slot.all.where(status: 'allocated')
+  end
 end

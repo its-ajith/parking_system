@@ -13,8 +13,34 @@ class Admin::ParkSystemsController < AdminController
     end
     
     def show 
+      
+      @parksystem = current_user.park_system
+      @slots = current_user.park_system.slots.all
+
+      if (params[:color])
+        @slots= current_user.park_system.find_by_color(params[:color])
+      end
+
+    
+
+        
+      case (params.has_key?(:status))
+      when (params[:status] == "unallocated")
+        @slots= current_user.park_system.available_slots
+      when (params[:status] == "allocated")
+        @slots= current_user.park_system.booked_slots
+      end      
+    end
+
+    def index
       @parksystem = current_user.park_system
     end
+
+    def destroy
+      
+    end
+
+    
     
     private
     def parksystem_params

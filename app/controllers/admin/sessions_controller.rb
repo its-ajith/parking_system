@@ -7,7 +7,7 @@ class Admin::SessionsController < ApplicationController
     if user && user.password ==  Digest::SHA1.hexdigest(params[:password])
       session[:user_id] = user.id
       flash[:notice]="Login successful"
-      redirect_to '/admin/park_system'
+      redirect_to '/admin/park_systems'
     else
       flash[:notice]="Invalid Email or Password"
       redirect_to '/admin/sessions/new'
