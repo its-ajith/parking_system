@@ -19,13 +19,15 @@ class ParkSystem < ApplicationRecord
     self.slots.where(status: "allocated")
   end
 
-  def allocate_slot
-    Slot.allocate
+  def book_slot
+    
+    self.slots.where(id: "2")
+    s
   end
 
 
   def find_by_color(color)
-    self.slots.joins(:car).select('slots.id').where('color = color')
+    self.slots.joins(:car).select('slots.id', 'slots.status').where('color = color')
   end
 
   def find_by_register_number(register_number)

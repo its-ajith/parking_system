@@ -15,14 +15,20 @@ class Admin::ParkSystemsController < AdminController
     def show 
       @parksystem = current_user.park_system
       @slots = current_user.park_system.slots.all
-      
-      if (params[:color])
-        @slots= current_user.park_system.find_by_color(params[:color])
+      if (params.has_key?(:color))
+        
+        @slots= current_user.park_system.find_by_color(params[:color][:color])
       end
 
-    
+     
 
+      case (params.has_key?(:slot))
+      when (params[:status] == "book")
         
+      when (params[:status] == "free")
+      end      
+    
+    
       case (params.has_key?(:status))
       when (params[:status] == "unallocated")
         @slots= current_user.park_system.available_slots

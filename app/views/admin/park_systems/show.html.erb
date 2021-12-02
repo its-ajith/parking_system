@@ -3,19 +3,17 @@
 
   <%= form_tag(admin_park_system_path, method: :get ) do  %>
     <%= label_tag  "Search by color:" %>
-    <%= collection_select(:color, :car_id, Car.all, :id, :color, prompt: true, selected: params[:color]) %>
+    <%= collection_select(:color, :color, Car.all, :color, :color, prompt: true, selected: params[:color]) %>    
     <%= submit_tag "Search" %>
   <% end %>
   
-  <%= form_tag(admin_park_system_path) do  %>
+  <%= form_tag(admin_park_system_path, method: :get) do  %>
     <%= label_tag  "Search by register number:" %>
     <%= text_field_tag :register_number %>
     <%= submit_tag "Search" %>
   <% end %>
 
 
-<%= link_to 'Book slot', admin_park_system_path %>
-<%= link_to 'remove slot', admin_park_system_path(status: "") %>
 <%= link_to 'free slots available',admin_park_system_path(status: "unallocated") %>
 <%= link_to 'booked slots',admin_park_system_path(status: "allocated") %>
 <%= link_to 'All slots',admin_park_system_path(status: "") %>
@@ -37,11 +35,12 @@
     <% @slots.each do |slot| %>
       <tr>
         <td><%=  slot.id %></td> 
-        <td><%=  link_to slot.status, admin_park_system_path %>
+        <td><%=  slot.status %></td>
+        <td>
         <% if slot.status == "allocated" %>
-        <%=link_to 'free slot', admin_park_system_path(slot:"free")%>
+        <%=link_to 'remove slot', admin_park_system_path(slot.id)%>
         <% else%>
-        <%=link_to 'book slot', admin_park_system_path(slot:"book")%>
+        <%=link_to 'book slot', admin_park_system_path(slot.id)%></td>
         <%end%>
         </td>
        
