@@ -1,6 +1,7 @@
-<h1>Welcome to my parking parking system</h1>
+<html>
+<h1>Welcome to <%=@parksystem.name%>'s parking parking system</h1>
 
-<%= link_to 'Book_slot',edit_slot_path(@slot)	 %>
+<a><%= link_to 'Book_slot', edit_slot_path(@slot)%></a>
 
 </head>
 
@@ -26,3 +27,4 @@
   <% end %>
 </tbody>
 </table>
+</html>

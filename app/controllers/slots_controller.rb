@@ -1,5 +1,6 @@
 class SlotsController < ApplicationController
   def index
+    @parksystem = current_user.park_system
     @slots = current_user.park_system.slots.all
     @slot =  current_user.park_system.available_slots.first
 
@@ -7,7 +8,6 @@ class SlotsController < ApplicationController
 
   def edit
     @slot =  current_user.park_system.available_slots.first
-
   end
 
   def update
@@ -23,6 +23,6 @@ class SlotsController < ApplicationController
   end
 
   def show
-    @slot = Slot.find_by(params[:id])
+    @slot = Slot.find(params[:id])
   end
 end

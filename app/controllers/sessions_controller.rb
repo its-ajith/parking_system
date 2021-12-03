@@ -1,4 +1,4 @@
-class Admin::SessionsController < ApplicationController
+class SessionsController < ApplicationController
   def new
   end
 
@@ -10,12 +10,15 @@ class Admin::SessionsController < ApplicationController
       redirect_to '/admin/park_systems'
     else
       flash[:notice]="Invalid Email or Password"
-      redirect_to '/admin/sessions/new'
+      redirect_to '/login'
     end
   end
   
   def destroy
     session[:user_id] = nil
+    session.delete(:user_id)
+    session.clear
+
     flash[:notice]="Logged Out"
     redirect_to '/admin/home/index'
   end

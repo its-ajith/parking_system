@@ -6,7 +6,7 @@ class Admin::ParkSystemsController < AdminController
     def create
       @parksystem = current_user.create_park_system(parksystem_params)
       if @parksystem.save
-        render :show
+        redirect_to admin_park_system_path(@parksystem)
       else
         render :new
       end
@@ -14,9 +14,11 @@ class Admin::ParkSystemsController < AdminController
     
     def show 
       @parksystem = current_user.park_system
+
+      
       
       current_user.park_system.remove_slot(params[:id]) if (params[:id]) && (params[:status] == "remove")
-
+      
       if (params[:color])      
         @slots= current_user.park_system.find_by_color(params[:color]['color'])
       elsif (params[:register_number])

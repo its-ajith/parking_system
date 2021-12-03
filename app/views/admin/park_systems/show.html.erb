@@ -1,6 +1,6 @@
 <head>
 <br>
-
+<h1>Welcome to <%=@parksystem.name%>'s parking system </h1>
   <%= form_tag(admin_park_system_path, method: :get ) do  %>
     <%= label_tag  "Search by color:" %>
     <%= collection_select(:color, :color, Car.all.select(:color).uniq, :color, :color, prompt: true, selected: params[:color]) %>    
@@ -38,7 +38,7 @@
         <td><%=  slot.status %></td>
         <td>
         <% if slot.status == "allocated" %>
-        <%=link_to 'remove slot', admin_park_system_path(slot.id, status: 'remove')%>
+        <div class="color"><%=link_to 'remove slot', admin_park_system_path(slot.id, status: 'remove')%></div>
         <%end%>
         </td>
        

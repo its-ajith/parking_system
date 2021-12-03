@@ -1,4 +1,4 @@
-class Admin::UsersController < ApplicationController
+class UsersController < ApplicationController
 
   def index
   end
@@ -13,7 +13,7 @@ class Admin::UsersController < ApplicationController
       redirect_to '/login'
       flash[:notice]="Signup successful"
     else
-      flash[:notice]="Please try again"
+      flash[:notice]="invalid email_id or password!  *Note: your password should have 2-15 letters"
        render :new
     end
   end

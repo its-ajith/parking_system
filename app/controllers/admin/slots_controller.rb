@@ -13,7 +13,7 @@ class Admin::SlotsController < AdminController
   def update
     @slot =  current_user.park_system.available_slots.first
     if (params[:color]) && (params[:register_number])
-      @slot.allocate(params[:color], params[:register_number])
+      @slot.allocate(params[:register_number], params[:color])
       redirect_to admin_slot_path
       flash[:notice]="slot booked"
     else
