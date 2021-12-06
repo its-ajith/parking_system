@@ -7,15 +7,17 @@ class User < ApplicationRecord
   validates :confirmation_password, presence: true
   validates_format_of :email, with: /\A[^@\s]+@([^@\s]+\.)+[^@\s]+\z/
 
-  before_create :confirmation_password, :hash_password
+  before_create :confirm_password
 
-  def hash_password
+  def hash_passwords
     self.password = Digest::SHA1.hexdigest(password)
+    self.confirmation_password = Digest::SHA1.hexdigest(password)   
   end
 
   def confirm_password
     if password == confirmation_password
       User.create
+      hash_passwords
     else
       error.message("Password doesn't match")
     end
