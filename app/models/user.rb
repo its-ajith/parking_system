@@ -11,7 +11,7 @@ class User < ApplicationRecord
 
   def hash_passwords
     self.password = Digest::SHA1.hexdigest(password)
-    self.confirmation_password = Digest::SHA1.hexdigest(password)   
+    self.confirmation_password = Digest::SHA1.hexdigest(password)
   end
 
   def confirm_password

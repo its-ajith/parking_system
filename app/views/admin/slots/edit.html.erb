@@ -1,14 +1,9 @@
 <%= form_tag admin_slot_path(@slot) do %>
-    <% if @car.errors.any? %>
-    <div id="error_explanation"> 
-      <ul>
+    <ul>
       <% @car.errors.full_messages.each do |msg| %>
         <li>* <%= msg %></li>
       <% end %>
       </ul>
-    </div>
-    <%end%>
-
        <div class="field">
     <%= label_tag 'Enter register number' %>
     <%= text_field_tag :register_number, params[:register_number] %>

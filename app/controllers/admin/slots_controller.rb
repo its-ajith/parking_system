@@ -1,15 +1,15 @@
 # frozen_string_literal: true
 
 class Admin::SlotsController < AdminController
+  before_action :find_slot, except: [:show]
+
   def index; end
 
   def edit
-    @slot = current_user.park_system.available_slots.first
     @car = @slot.create_car
   end
 
   def update
-    @slot = current_user.park_system.available_slots.first
     if params[:color] && params[:register_number]
       @car = @slot.create_car(register_number: params[:register_number], color: params[:color])
       if @car.save
@@ -35,6 +35,10 @@ class Admin::SlotsController < AdminController
   end
 
   private
+
+  def find_slot
+    @slot = current_user.park_system.available_slots.first
+  end
 
   def slot_params
     params.require(:slot).permit(:slot_number, :status)

@@ -1,29 +1,37 @@
 # frozen_string_literal: true
 
+# SlotsController
 class SlotsController < ApplicationController
+  before_action :find_slot, except: [:show]
   def index
     @parksystem = current_user.park_system
     @slots = current_user.park_system.slots.all
-    @slot =  current_user.park_system.available_slots.first
   end
 
   def edit
-    @slot =  current_user.park_system.available_slots.first
+    @car = @slot.create_car
   end
 
   def update
-    @slot =  current_user.park_system.available_slots.first
     if params[:color] && params[:register_number] && @slot
-      @slot.allocate(params[:color], params[:register_number])
-      redirect_to slot_path(@slot)
-      flash[:notice] = 'slot booked'
-    else
-      flash[:notice] = 'Sorry! All slots are full'
-      render :edit
+      @car = @slot.create_car(register_number: params[:register_number], color: params[:color])
+      if @car.save
+        @slot.allocate
+        redirect_to slot_path
+        flash[:notice] = 'slot booked'
+      else
+        render :edit
+      end
     end
   end
 
   def show
     @slot = Slot.find(params[:id])
+  end
+
+  private
+
+  def find_slot
+    @slot = current_user.park_system.available_slots.first
   end
 end
