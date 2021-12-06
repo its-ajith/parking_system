@@ -1,7 +1,7 @@
-class UsersController < ApplicationController
+# frozen_string_literal: true
 
-  def index
-  end
+class UsersController < ApplicationController
+  def index; end
 
   def new
     @user = User.new
@@ -11,16 +11,16 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       redirect_to '/login'
-      flash[:notice]="Signup successful"
+      flash[:notice] = 'Signup successful'
     else
-      flash[:notice]="Please try again"
-       render :new
+      flash[:notice] = 'Please try again'
+      render :new
     end
   end
 
   private
-    def user_params
-      params.require(:user).permit(:email, :password, :confirmation_password)
-    end
 
+  def user_params
+    params.require(:user).permit(:email, :password, :confirmation_password)
+  end
 end

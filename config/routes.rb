@@ -1,16 +1,18 @@
-Rails.application.routes.draw do
+# frozen_string_literal: true
 
-  root to: 'slots#index' 
+Rails.application.routes.draw do
+  root to: 'slots#index'
   resources :slots
-  post '/slots/:id' =>'slots#update'
+  post '/slots/:id' => 'slots#update'
   get '/signup' => 'users#new'
   post '/signup' => 'users#create'
-  
+
   get '/login' => 'sessions#new'
   post '/login' => 'sessions#create'
   get '/logout' => 'sessions#destroy'
-  post '/admin/slots/:id'=>    'admin/slots#update'   
-  
+  post '/admin/slots/:id' => 'admin/slots#update'
+  post '/admin/cars/:id' => 'admin/cars#show'
+
   namespace :admin do
     get 'home/index'
   end
