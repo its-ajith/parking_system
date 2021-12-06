@@ -36,10 +36,6 @@ class Admin::SlotsController < AdminController
 
   private
 
-  def find_slot
-    @slot = current_user.park_system.find(params[:id])
-  end
-
   def slot_params
     params.require(:slot).permit(:slot_number, :status)
   end

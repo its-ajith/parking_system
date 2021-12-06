@@ -13,7 +13,7 @@ class SlotsController < ApplicationController
 
   def update
     @slot =  current_user.park_system.available_slots.first
-    if params[:color] && params[:register_number]
+    if params[:color] && params[:register_number] && @slot
       @slot.allocate(params[:color], params[:register_number])
       redirect_to slot_path(@slot)
       flash[:notice] = 'slot booked'
