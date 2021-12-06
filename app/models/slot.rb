@@ -1,6 +1,4 @@
 class Slot < ApplicationRecord
-  
-
   belongs_to :park_system
   belongs_to :car, optional:true
 
@@ -15,7 +13,6 @@ class Slot < ApplicationRecord
     self.status = "unallocated"
     self.save
   end
-  
   
   def available
     Slot.all.where(status: 'allocated')

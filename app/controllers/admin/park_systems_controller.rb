@@ -1,6 +1,7 @@
 class Admin::ParkSystemsController < AdminController
 
     def new  
+      @parksystem = current_user.create_park_system()
     end
     
     def create
@@ -14,8 +15,6 @@ class Admin::ParkSystemsController < AdminController
     
     def show 
       @parksystem = current_user.park_system
-
-      
       
       current_user.park_system.remove_slot(params[:id]) if (params[:id]) && (params[:status] == "remove")
       
@@ -31,9 +30,6 @@ class Admin::ParkSystemsController < AdminController
       else
         @slots = current_user.park_system.slots.all
       end
-       
-      
-
     end
 
     def index

@@ -1,4 +1,14 @@
 <%= form_for :park_system, url: '/admin/park_systems' do |f|%>
+    <% if @parksystem.errors.any? %>
+    <div id="error_explanation"> 
+      <ul>
+      <% @parksystem.errors.full_messages.each do |msg| %>
+        <li>* <%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+    <%end%>
+
     <div class="form-group">
     <%= f.label :"Enter the name of your parking system" %><br>
     <%= f.text_field :name%>

@@ -4,6 +4,10 @@ class ParkSystem < ApplicationRecord
   belongs_to :user, dependent: :destroy
   after_create :create_slots
 
+	validates :name, presence: true
+	validates :slot_count, presence: true, numericality: true
+
+
   def create_slots
     self.slot_count.times do |i|
     self.slots.create(status:"unallocated")
