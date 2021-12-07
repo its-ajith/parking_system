@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# User
 class User < ApplicationRecord
   has_one :park_system
   validates :email, presence: true, uniqueness: true
@@ -15,11 +16,8 @@ class User < ApplicationRecord
   end
 
   def confirm_password
-    if password == confirmation_password
-      User.create
-      hash_passwords
-    else
-      error.message("Password doesn't match")
-    end
+    return unless password == confirmation_password
+
+    hash_passwords
   end
 end

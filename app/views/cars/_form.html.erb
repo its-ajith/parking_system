@@ -1,0 +1,19 @@
+<h1>Cars#new</h1>
+<%= form_with model: car, local: true do |f| %>
+  <ul>
+    <% @car.errors.full_messages.each do |msg| %>
+      <li> <%= msg %></li>
+    <% end %>
+  </ul>
+  <div class="field">
+    <%= f.label 'Enter register number' %>
+    <%= f.text_field :register_number %>
+  </div>
+  
+  <div>
+    <%= f.label 'Enter the color of your car' %>
+    <%= f.text_field :color%>
+  </div>
+
+  <%= f.submit "book slot" %>  
+<% end %>

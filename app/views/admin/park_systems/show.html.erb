@@ -1,5 +1,4 @@
 <head>
-<br>
   <%= form_tag(admin_park_system_path, method: :get ) do  %>
     <%= label_tag  "Search by color:" %>
     <%= collection_select(:color, :color, Car.all.select(:color).uniq, :color, :color, prompt: true, selected: params[:color]) %>    
@@ -9,14 +8,13 @@
   <%= form_tag(admin_park_system_path, method: :get) do  %>
     <%= label_tag  "Search by register number:" %>
     <%= text_field_tag :register_number %>
-    <%= submit_tag "Search" %>
+    <%= submit_tag "Search"%>
   <% end %>
 
-  <%= link_to 'Book_slot',edit_admin_slot_path %><br>
+  <%= link_to 'Book_slot',new_admin_car_path %><br>
   <%= link_to 'free slots available',admin_park_system_path(status: "unallocated") %>
   <%= link_to 'booked slots',admin_park_system_path(status: "allocated") %>
   <%= link_to 'All slots',admin_park_system_path(status: "") %>
-
 
 </head>
 
@@ -25,19 +23,17 @@
     <tr>
       <th>Slot_number</th>
       <th>Status</th>
-      
-      <th colspan="3"></th>
     </tr>
   </thead>
 
   <tbody>
     <% @slots.each do |slot| %>
       <tr>
-        <td><%=  slot.id %></td> 
+        <td><%=  slot.id %> </td> 
         <td><%=  slot.status %></td>
         <td>
         <% if slot.status == "allocated" %>
-        <div class="color"><%=link_to 'remove slot', admin_park_system_path(slot.id, status: 'remove')%></div>
+          <div class="color"><%=link_to 'remove slot', admin_park_system_path(slot.id, status: 'remove')%></div>
         <%end%>
         </td>
        

@@ -1,10 +1,12 @@
 <html>
 <h1>Welcome to <%=@parksystem.name%>'s parking parking system</h1>
 
-<a><%= link_to 'Book_slot', edit_slot_path(@slot)%></a>
-
+<% if @slot == nil%>
+<h1>Sorry! The slots were full</h1>
+<a><%= link_to 'click to refresh'%></a>
+<%else%>
+<a><%= link_to 'Book_slot', new_car_path%></a>
 </head>
-
 <table>
 <thead>
   <tr>
@@ -20,11 +22,10 @@
     <tr>
       <td><%=  slot.id %></td> 
       <td><%=  slot.status %></td>
-      <td>
-      </td>
-     
     </tr>
   <% end %>
 </tbody>
 </table>
+
+<%end%>
 </html>

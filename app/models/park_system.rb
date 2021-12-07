@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# ParkSystem
 class ParkSystem < ApplicationRecord
   has_many :slots
   has_many :cars, through: :slots
@@ -24,7 +25,7 @@ class ParkSystem < ApplicationRecord
   end
 
   def remove_slot(id)
-    Slot.where('id = ?', id).first.unallocate
+    Slot.find(id).unallocate
   end
 
   def find_by_color(color)

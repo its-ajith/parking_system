@@ -1,0 +1,4 @@
+<h1>Admin::Cars</h1>
+<%= form_for @car, :url => { :action => "create" } do |form| %>
+	<%= render "cars/form", car: @car %>
+<%end%>

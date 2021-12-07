@@ -3,6 +3,7 @@
 Rails.application.routes.draw do
   root to: 'slots#index'
   resources :slots
+  resources :cars
   post '/slots/:id' => 'slots#update'
   get '/signup' => 'users#new'
   post '/signup' => 'users#create'
@@ -11,7 +12,6 @@ Rails.application.routes.draw do
   post '/login' => 'sessions#create'
   get '/logout' => 'sessions#destroy'
   post '/admin/slots/:id' => 'admin/slots#update'
-  post '/admin/cars/:id' => 'admin/cars#show'
 
   namespace :admin do
     get 'home/index'
@@ -20,6 +20,7 @@ Rails.application.routes.draw do
     resources :sessions
     resources :park_systems
     resources :slots
+    resources :cars
   end
 
   resources :users

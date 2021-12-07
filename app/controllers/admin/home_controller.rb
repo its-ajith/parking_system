@@ -1,5 +1,8 @@
 # frozen_string_literal: true
 
-class Admin::HomeController < ApplicationController
-  def index; end
+module Admin
+  # HomeController
+  class HomeController < ApplicationController
+    def index; end
+  end
 end
